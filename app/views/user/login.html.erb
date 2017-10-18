@@ -5,15 +5,22 @@
     <div class="wrap">
         <div class="content-main">
             <div class="w3ls-subscribe w3ls-subscribe1">
-                <form action="/login" method="post">
-                    <input type="email" name="email" placeholder="Nhập email của bạn" required />
-                    <input type="password" name="password" placeholder="Nhập password của bạn" required />
-                    <input type="submit" class="btn btn-success btn-lg"  value="Đăng nhập">
-                    <a href="/auth/facebook" class="btn btn-primary btn-lg"><span class="fa fa-facebook"></span> Facebook</a>
-                </form>
-                <br>
+
                 
-                    <div class="alert alert-danger"></div>
+                    <%= form_with scope: :session, local: true do |f|%>
+
+                    <%= f.email_field :email,  placeholder:"Nhập email của bạn" , required: "required"%>
+
+                    <%= f.password_field :password, placeholder:"Nhập mật khẩu", required: "required"%>
+
+                    <input type="submit" class="btn btn-success btn-lg"  value="Đăng nhập">
+                <%end%>
+                <br />
+                <% if flash[:error] %>
+                    <div class="alert alert-danger">
+                        <%= flash[:error] %>
+                    </div>
+                <% end %>
                 
             </div>
 
