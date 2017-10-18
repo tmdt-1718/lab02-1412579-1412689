@@ -5,16 +5,33 @@
     <div class="wrap">
         <div class="content-main">
             <div class="w3ls-subscribe w3ls-subscribe1">
-                <form action="/sign-up" method="post">
-                    <input type="email" name="email" id="email" placeholder="Nhập email của bạn" required />
-                    <input type="password" name="password" id="password" placeholder="Nhập password của bạn" required />
-                    <input type="text" name="fulname" id="fullname" placeholder="Nhập tên của bạn" required />
-                    <input type="text" name="phone" id="phone" placeholder="Nhập số điện thoại của bạn" required />
-                    <input type="submit" class="btn btn-success btn-lg"  value="Đăng ký">
-                </form>
-                <br>
+            <%= form_with scope: :user, local: true do |f|%>
                 
-                    <div class="alert alert-danger"></div>
+  
+                    <%= f.email_field :email , placeholder:"Nhập thông tin email" , required: "required"%>
+                
+        
+                    <%= f.text_field :fullname , placeholder:"Nhập họ và tên" , required: "required"%>
+
+        
+                
+                    <%= f.password_field :password , placeholder:"Nhập mật khẩu" , required: "required"%>
+                
+
+                    <%= f.password_field :password_confirmation, placeholder:"Xác nhận mật khẩu" , required: "required" %>
+
+
+
+                    <input type="submit" class="btn btn-success btn-lg"  value="Đăng ký">
+                    <% end %>
+                    <br />
+                    <% if @user.errors.any? %>
+                    <div class="alert alert-danger">
+                        
+                            <% @user.errors.full_messages.each do |message| %>
+                            <p><%= message %></p>
+                            <% end %>
+                    <% end %>
 
             </div>
         </div>
