@@ -8,8 +8,8 @@
         <small>{{count}} messages sent</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Mailbox</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active">Tìm bạn mới</li>
       </ol>
     </section>
 
@@ -17,14 +17,18 @@
     <section class="content">
     <div class="row">
         <div class="col-md-3">
-          <a href="/add" class="btn btn-primary btn-block margin-bottom">Gửi tin nhắn</a>
+        <a href="/add" class="btn btn-primary btn-block margin-bottom">Gửi tin nhắn</a>
           <%=render "shared/sidebar" %>
         <!-- /.col -->
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Sent box</h3>
-
+              <h3 class="box-title">Tìm kiếm bạn bè</h3>
+              <% if flash[:success] %>
+              <div class="alert alert-success">
+                  <%= flash[:success] %>
+              </div>
+              <% end %>
               <div class="box-tools pull-right">
                 <div class="has-feedback">
                   
@@ -44,33 +48,40 @@
                 <!-- /.pull-right -->
               </div>
               <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
+                <table id="newfr" class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                          <th>User ID</th>
+                          <th >Họ và tên</th>
+                          <th>Số điện thoại</th>
+                          <th>Email</th>
+                          <th>Ngày tham gia</th>
+                          <th>Thao tác1</th>
+                        </tr>
+                      </thead>
                   <tbody>
-                  {{#each sent}}
-                  <tr>
-                  <td>{{inc @index}}</td>
-                  {{#if read}}
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                  {{else}}
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                  {{/if}}
-                    <td class="mailbox-name"><a href="/readsent/{{id}}">Người nhận: {{ fullname }}</a></td>
-                    <td class="mailbox-subject"><b>{{ title }}</b></td>
-                    <td class="mailbox-attachment">
-                    {{#if read}}
-                        <b>Đã đọc: {{ read_time }}</b>
-                    {{else}}                    
-                        <b>Người nhận chưa đọc thư</b>
-                    {{/if}}
-                    </td>
-                    <td class="mailbox-date">
-                    Đã gửi 
-                    <time datetime="{{ created_at }}" pubdate>
-                      {{ created_at }}
-                  </time>
-                  </td>
-                  </tr>
-                  {{/each}}
+
+                  
+
+                    <% @user.each do |u| %>
+                    <tr>
+                        <td class="mailbox-name" id="user_id"><%=u.id%></td>
+                        <td class="mailbox-name"><%=u.fullname%></td>
+                        <td class="mailbox-subject"><%=u.phone%></td>
+                        <td class="mailbox-subject"><%=u.email%></td>
+                        <td class="mailbox-date"><%= time_ago_in_words(u.created_at) %></td>
+                        <% if @array.include?(u.id) %>
+                        <td>
+                          <a href="javascript:" class="btn btn-danger btn-xs del-friend">Huỷ bạn</a>
+                          <a href="javascript:" class="btn btn-danger btn-xs del-friend">Block</a>
+                        </td>
+                        <%else%>
+                        <td>
+                          <a href="javascript:" class="btn btn-success btn-xs add-friend">Thêm bạn</a>
+                        </td>
+                        <%end%>
+                    </tr>
+                  <%end%>
                   </tbody>
                 </table>
                 <!-- /.table -->

@@ -5,7 +5,11 @@
     <div class="wrap">
         <div class="content-main">
             <div class="w3ls-subscribe w3ls-subscribe1">
-
+                    <% if flash[:success] %>
+                    <div class="alert alert-success">
+                        <%= flash[:success] %>
+                    </div>
+                    <% end %>
                 
                     <%= form_with scope: :session, local: true do |f|%>
 

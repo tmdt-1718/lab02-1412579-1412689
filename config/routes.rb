@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   post '/login', to: 'user#plogin', as: :plogin
   get '/logout', to: 'user#logout', as: :logout
 
+  get '/new-friend', to: 'friend#list', as: :newfriend
+  get '/friend', to: 'friend#added', as: :addedfriend
+  post '/new-friend/:id', to: 'friend#add', as: :addfriend
+  post '/del-friend/:id', to: 'friend#destroy', as: :delfriend
+
   get '/sent', to: 'mail#sent', as: :sent
   get '/received', to: 'mail#received', as: :received
   get '/new', to: 'mail#new', as: :new

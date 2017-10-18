@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'bcrypt'
+
+(1..30).each do |number|
+    User.create!(email: "tangliang#{number}@gmail.com", password_digest: BCrypt::Password.create("123456"), fullname: "tangliang#{number}")
+end

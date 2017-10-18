@@ -1,4 +1,5 @@
 class MailController < ApplicationController
+    before_action :isLogin
     def new
     end
     def sent

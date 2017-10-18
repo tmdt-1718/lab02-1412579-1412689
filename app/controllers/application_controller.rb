@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def loginTo(user)
-    session[:current_user] = user.id
+    session[:current_user] = user
   end
   
 end
