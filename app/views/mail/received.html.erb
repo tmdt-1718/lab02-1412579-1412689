@@ -17,7 +17,7 @@
     <section class="content">
     <div class="row">
         <div class="col-md-3">
-          <a href="/add" class="btn btn-primary btn-block margin-bottom">Gửi tin nhắn</a>
+          <a href="/new" class="btn btn-primary btn-block margin-bottom">Gửi tin nhắn</a>
           <%=render "shared/sidebar" %>
         <!-- /.col -->
         <div class="col-md-9">
@@ -27,7 +27,7 @@
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
-                  
+
                 </div>
               </div>
               <!-- /.box-tools -->
@@ -39,7 +39,7 @@
                 </div>
                 <!-- /.btn-group -->
                 <div class="pull-right">
-                  
+
                 </div>
                 <!-- /.pull-right -->
               </div>
@@ -59,12 +59,12 @@
                     <td class="mailbox-attachment">
                     {{#if read}}
                         <b>Đã đọc: {{ read_time }}</b>
-                    {{else}}                    
+                    {{else}}
                         <b>Người nhận chưa đọc thư</b>
                     {{/if}}
                     </td>
                     <td class="mailbox-date">
-                    Đã gửi 
+                    Đã gửi
                     <time datetime="{{ created_at }}" pubdate>
                       {{ created_at }}
                   </time>
@@ -84,7 +84,7 @@
                 </div>
                 <!-- /.btn-group -->
                 <div class="pull-right">
-                  
+
                 </div>
                 <!-- /.pull-right -->
               </div>
@@ -101,7 +101,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-    
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -112,4 +112,3 @@
 <!-- ./wrapper -->
 
 </div>
-
