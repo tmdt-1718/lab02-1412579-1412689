@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sentbox
-        <small>{{count}} messages sent</small>
+        Danh sách bạn bè
+        
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-        <li class="active">Tìm bạn mới</li>
+        <li class="active">Danh sách bạn bè</li>
       </ol>
     </section>
 
@@ -17,13 +17,13 @@
     <section class="content">
     <div class="row">
         <div class="col-md-3">
-        <a href="/add" class="btn btn-primary btn-block margin-bottom">Gửi tin nhắn</a>
+        <a href="/new" class="btn btn-primary btn-block margin-bottom">Gửi tin nhắn</a>
           <%=render "shared/sidebar" %>
         <!-- /.col -->
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tìm kiếm bạn bè</h3>
+              <h3 class="box-title">Danh sách bạn bè</h3>
               <% if flash[:success] %>
               <div class="alert alert-success">
                   <%= flash[:success] %>

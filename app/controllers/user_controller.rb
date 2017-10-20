@@ -12,7 +12,7 @@ class UserController < ApplicationController
         #p user.password_digest
         if user && BCrypt::Password.new(user.password_digest) == session_params[:password]
             loginTo(user)
-            redirect_to :index
+            redirect_to :received
         else
             flash[:error] = "Thông tin đăng nhập không chính xác!"
             redirect_to :login

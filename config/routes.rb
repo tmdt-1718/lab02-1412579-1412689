@@ -14,8 +14,16 @@ Rails.application.routes.draw do
   post '/new-friend/:id', to: 'friend#add', as: :addfriend
   post '/del-friend/:id', to: 'friend#destroy', as: :delfriend
 
+  get '/banned', to: 'friend#banned', as: :banned
+  post '/ban/:id', to: 'friend#ban', as: :ban
+  post '/unban/:id', to: 'friend#unban', as: :unban
+
+
   get '/sent', to: 'mail#sent', as: :sent
   get '/received', to: 'mail#received', as: :received
+  
   get '/new', to: 'mail#new', as: :new
+  post '/new', to: 'mail#pnew', as: :pnew
+
   get '/read/', to: 'mail#read', as: :read
 end
