@@ -34,8 +34,10 @@ class MailController < ApplicationController
         end
     end
     def sent
+
     end
     def received
+        
     end
     def read
     end
