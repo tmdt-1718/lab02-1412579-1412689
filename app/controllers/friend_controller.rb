@@ -1,4 +1,5 @@
 class FriendController < ApplicationController
+    before_action :isLogin
     def list
         id = session[:current_user]["id"];
         @added_fr = Friend.where("user_id = #{id}").where("ban is null")
