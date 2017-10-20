@@ -4,11 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-      Danh sách người dùng trong hệ thống
+        Danh sách đã block
+        
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-        <li class="active">Tìm bạn mới</li>
+        <li class="active">Danh sách đã block</li>
       </ol>
     </section>
 
@@ -22,7 +23,7 @@
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tìm kiếm bạn bè</h3>
+              <h3 class="box-title">Danh sách đã block</h3>
               <% if flash[:success] %>
               <div class="alert alert-success">
                   <%= flash[:success] %>
@@ -69,16 +70,9 @@
                         <td class="mailbox-subject"><%=u.phone%></td>
                         <td class="mailbox-subject"><%=u.email%></td>
                         <td class="mailbox-date"><%= time_ago_in_words(u.created_at) %></td>
-                        <% if @array.include?(u.id) %>
                         <td>
-                          <a href="javascript:" class="btn btn-danger btn-xs del-friend">Huỷ bạn</a>
-                          <a href="javascript:" class="btn btn-danger btn-xs ban">Block</a>
+                          <a href="javascript:" class="btn btn-primary btn-xs unban">Xoá khỏi danh sách</a>
                         </td>
-                        <%else%>
-                        <td>
-                          <a href="javascript:" class="btn btn-success btn-xs add-friend">Thêm bạn</a>
-                        </td>
-                        <%end%>
                     </tr>
                   <%end%>
                   </tbody>

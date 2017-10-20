@@ -39,7 +39,9 @@
     <script type="text/javascript">
     $(document).ready(function() {
         
-        $(".select2").select2();
+        $(".select2").select2({
+            multiple: true,
+        });
 
         var dt = $('#newfr');
         if(dt){
@@ -89,11 +91,61 @@
                         if(data.status == 1){
                             
                             ele.empty();
-                            ele.html('<a href="javascript:" class="btn btn-success btn-xs del-friend">Thêm bạn</a>');
+                            ele.html('<a href="javascript:" class="btn btn-success btn-xs add-friend">Thêm bạn</a>');
                             
                         }
                         else{
-                            alert("Thêm bạn thất bại!");
+                            alert("Huỷ kết bạn thất bại!");
+                        }
+                    }
+                 }
+            });
+        });
+
+        $("#newfr").on("click", ".ban",function(){
+            var ele = $(this).parent();
+            var id = ele.parent().find("#user_id").html();
+            var url = '/ban/' + id; 
+            $.ajax({
+                url: url,
+                type: 'POST',
+                cache: false,
+                data:{id:id},
+                success: function (data){
+                    if(data){
+                        if(data.status == 1){
+                            
+                            ele.parent().empty();
+                            alert("Block người dùng thành công!")
+                            
+                        }
+                        else{
+                            alert("Block người dùng thất bại!");
+                        }
+                    }
+                 }
+            });
+        });
+
+        $("#newfr").on("click", ".unban",function(){
+            var ele = $(this).parent();
+            var id = ele.parent().find("#user_id").html();
+            var url = '/unban/' + id; 
+            $.ajax({
+                url: url,
+                type: 'POST',
+                cache: false,
+                data:{id:id},
+                success: function (data){
+                    if(data){
+                        if(data.status == 1){
+                            
+                            ele.parent().empty();
+                            alert("Xoá người dùng khỏi danh sách block thành công!")
+                            
+                        }
+                        else{
+                            alert("Xoá người dùng khỏi danh sách block thất bại!")
                         }
                     }
                  }

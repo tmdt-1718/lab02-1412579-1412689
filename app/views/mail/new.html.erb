@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<form action="/compose" method="POST">
+
 <div class="wrapper">
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -21,7 +21,6 @@
         <a href="/received" class="btn btn-primary btn-block margin-bottom">Trở về hộp thư đến</a>
       <%=render "shared/sidebar" %>
 
-
         <!-- /.col -->
         <div class="col-md-9">
           <div class="box box-primary">
@@ -29,19 +28,15 @@
               <h3 class="box-title">Tạo tin nhắn mới</h3>
             </div>
             <!-- /.box-header -->
-
+            <%= form_with scope: :mail, local: true do |f|%>
             <div class="box-body">
               <div class="form-group">
                 <label>Người nhận: </label>
-                  <select name="receive_id" class="form-control select2">
-                  
-                    <option value="{{friend_id}}">{{ fullname }} - {{ email }}</option>
-                 
-                  </select>
+                <%= f.select("id][", @user.collect {|p| [ p.fullname + " - " + p.email, p.id ] }, { include_blank: false }, class: "form-control select2") %>
                 </div>
                 <div class="form-group">
-                <label>Tên subject: </label>
-                <input name="sbjName" class="form-control" placeholder="To:" required />
+                <label>Tên tin nhắn: </label>
+                <%= f.text_field :title , placeholder:"Nhập tên tin nhắn" , class: "form-control", required: "required"%>
               </div>
               </div>
               <div class="form-group" >
@@ -49,23 +44,25 @@
              </div>
 
               <div id="compose">
-              <textarea class="textarea" placeholder="Place some text here"
-              style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              <%= f.text_area :content , placeholder:"Nhập tin nhắn" , class: "textarea", style: "width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;", required: "required"%>
+              
             </div>
               </div>
               <div class="form-group">
-                
+                <div class="box-footer">
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gửi</button>
+                  </div>
+                  
+                </div>
               </div>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer">
-              <div class="pull-right">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gửi</button>
-              </div>
-              
-            </div>
+            
+            <%end%>
             <!-- /.box-footer -->
           </div>
+          
           <!-- /. box -->
         </div>
         <!-- /.col -->
@@ -88,5 +85,5 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-</form>
+
 </div>
