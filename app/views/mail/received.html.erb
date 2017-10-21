@@ -4,8 +4,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sentbox
-        <small>{{count}} messages sent</small>
+        Inbox
+        <small><%= Mail.count%> messages sent</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,7 +23,7 @@
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Sent box</h3>
+              <h3 class="box-title">Inbox</h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -44,24 +44,17 @@
                 <!-- /.pull-right -->
               </div>
               <div class="table-responsive mailbox-messages">
+
                 <table class="table table-hover table-striped">
+
                   <tbody>
-                  {{#each sent}}
+                  <%@user.each do |us|%>
                   <tr>
-                  <td>{{inc @index}}</td>
-                  {{#if read}}
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                  {{else}}
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                  {{/if}}
-                    <td class="mailbox-name"><a href="/readsent/{{id}}">Người nhận: {{ fullname }}</a></td>
-                    <td class="mailbox-subject"><b>{{ title }}</b></td>
+
+                    <td class="mailbox-name"><a href="<%= received_path(us)%>">Người gửi: <%= us.user_send %></a></td>
+                    <td class="mailbox-subject"><b><%= truncate(us.content, length: 50) %></b></td>
                     <td class="mailbox-attachment">
-                    {{#if read}}
                         <b>Đã đọc: {{ read_time }}</b>
-                    {{else}}
-                        <b>Người nhận chưa đọc thư</b>
-                    {{/if}}
                     </td>
                     <td class="mailbox-date">
                     Đã gửi
@@ -70,9 +63,12 @@
                   </time>
                   </td>
                   </tr>
-                  {{/each}}
+
+                  <%end%>
                   </tbody>
+
                 </table>
+
                 <!-- /.table -->
               </div>
               <!-- /.mail-box-messages -->

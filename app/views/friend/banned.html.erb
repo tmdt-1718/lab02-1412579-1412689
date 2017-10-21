@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sentbox
-        <small><%= Mail.count%> messages sent</small>
+        Danh sách đã block
+        
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Mailbox</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active">Danh sách đã block</li>
       </ol>
     </section>
 
@@ -22,22 +22,16 @@
         <!-- /.col -->
         <div class="col-md-9">
           <div class="box box-primary">
-          <% if flash[:error] %>
-          <div class="alert alert-danger">
-              <%= flash[:error] %>
-          </div>
-      <% end %>
-      <% if flash[:success] %>
-          <div class="alert alert-success">
-              <%= flash[:success] %>
-          </div>
-      <% end %>
             <div class="box-header with-border">
-              <h3 class="box-title">Sent box</h3>
-
-                <div class="box-tools pull-right">
+              <h3 class="box-title">Danh sách đã block</h3>
+              <% if flash[:success] %>
+              <div class="alert alert-success">
+                  <%= flash[:success] %>
+              </div>
+              <% end %>
+              <div class="box-tools pull-right">
                 <div class="has-feedback">
-
+                  
                 </div>
               </div>
               <!-- /.box-tools -->
@@ -49,36 +43,37 @@
                 </div>
                 <!-- /.btn-group -->
                 <div class="pull-right">
-
+                  
                 </div>
                 <!-- /.pull-right -->
               </div>
               <div class="table-responsive mailbox-messages">
-                <table class="table table-hover table-striped">
+                <table id="newfr" class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                          <th>User ID</th>
+                          <th >Họ và tên</th>
+                          <th>Số điện thoại</th>
+                          <th>Email</th>
+                          <th>Ngày tham gia</th>
+                          <th>Thao tác</th>
+                        </tr>
+                      </thead>
                   <tbody>
-                  <%@user.each do |us|%>
-                  <tr>
 
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                  
 
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-
-                    <td class="mailbox-name"><a href="<%= sent_path(us)%>">Người nhận: <%= us.user_receive %></a></td>
-                    <td class="mailbox-subject"><b><%= truncate(us.content, length: 50) %></b></td>
-                    <td class="mailbox-attachment">
-
-                        <b>Đã đọc: {{ read_time }}</b>
-
-                        <b>Người nhận chưa đọc thư</b>
-
-                    </td>
-                    <td class="mailbox-date">
-                    Đã gửi
-                    <time datetime="{{ created_at }}" pubdate>
-                      {{ created_at }}
-                  </time>
-                  </td>
-                  </tr>
+                    <% @user.each do |u| %>
+                    <tr>
+                        <td class="mailbox-name" id="user_id"><%=u.id%></td>
+                        <td class="mailbox-name"><%=u.fullname%></td>
+                        <td class="mailbox-subject"><%=u.phone%></td>
+                        <td class="mailbox-subject"><%=u.email%></td>
+                        <td class="mailbox-date"><%= time_ago_in_words(u.created_at) %></td>
+                        <td>
+                          <a href="javascript:" class="btn btn-primary btn-xs unban">Xoá khỏi danh sách</a>
+                        </td>
+                    </tr>
                   <%end%>
                   </tbody>
                 </table>
@@ -93,7 +88,7 @@
                 </div>
                 <!-- /.btn-group -->
                 <div class="pull-right">
-
+                  
                 </div>
                 <!-- /.pull-right -->
               </div>
@@ -110,7 +105,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-
+    
   </footer>
 
   <!-- Control Sidebar -->
@@ -121,3 +116,4 @@
 <!-- ./wrapper -->
 
 </div>
+
