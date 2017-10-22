@@ -21,9 +21,10 @@ Rails.application.routes.draw do
 
   get '/sent', to: 'mail#sent', as: :sent
   get '/received', to: 'mail#received', as: :received
-  
+
+
   get '/new', to: 'mail#new', as: :new
   post '/new', to: 'mail#pnew', as: :pnew
 
-  get '/read/', to: 'mail#read', as: :read
+  get 'received/read/:id', to: 'mail#read', as: :read
 end

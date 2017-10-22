@@ -1,5 +1,5 @@
 class MailController < ApplicationController
-    before_action :isLogin
+    before_action :isLogin, only:[ :new, :pnew, :sent, :received, :read, :show]
     def new
         id = session[:current_user]["id"];
         @added_fr = Friend.where("user_id = #{id}")
@@ -34,15 +34,13 @@ class MailController < ApplicationController
         end
     end
     def sent
-      @user = Mail.all
-      @user = Mail.where(:user_send => session[:current_user]["id"])
+      @mail = Mail.joins("INNER JOIN users ON users.id = mails.user_receive").where(:user_send => session[:current_user]["id"]).select("mails.*","users.*")
     end
     def received
-      @user = Mail.all
-      @user = Mail.where(:user_receive=> session[:current_user]["id"])
+      @mail = Mail.joins("INNER JOIN users ON users.id = mails.user_send").where(:user_receive => session[:current_user]["id"]).where(:isRead => nil).select("mails.*","users.*")
     end
     def read
-
+      @mail = Mail.all
     end
     private
     def mail_params
