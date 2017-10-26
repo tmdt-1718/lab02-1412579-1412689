@@ -6,7 +6,7 @@ Thành viên:
 * [x] **1412579** Vũ Minh Trí (1412579)
 * [x] **1412689** Hoàng Thị Bích Vân (1412689)
 
-URL: **URL hosting của bài tập**
+URL: **https://lab02-1412579-1412689.herokuapp.com/**
 
 ## Yêu cầu
 
