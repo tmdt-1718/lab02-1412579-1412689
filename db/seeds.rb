@@ -8,6 +8,8 @@
 
 require 'bcrypt'
 
-(1..30).each do |number|
-    User.create!(email: "tangliang#{number}@gmail.com", password_digest: BCrypt::Password.create("123456"), fullname: "tangliang#{number}")
-end
+# (1..30).each do |number|
+#     User.create!(email: "tangliang#{number}@gmail.com", password_digest: BCrypt::Password.create("123456"), fullname: "tangliang#{number}")
+# end
+
+User.create!(email: "content.itvmtri@gmail.com", password_digest: BCrypt::Password.create("1"), fullname: "Vũ Minh Trí")
