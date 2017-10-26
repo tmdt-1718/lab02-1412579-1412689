@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/new', to: 'mail#new', as: :new
   post '/new', to: 'mail#pnew', as: :pnew
 
-  get 'received/read/:id', to: 'mail#read', as: :read
+  get 'sent/read/:id', to: 'mail#readsent', as: :readsent
+  get 'received/read/:id', to: 'mail#readreceived', as: :readreceived
 
 end

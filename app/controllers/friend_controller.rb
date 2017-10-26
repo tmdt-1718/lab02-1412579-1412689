@@ -93,9 +93,11 @@ class FriendController < ApplicationController
     def ban
         if request.xhr?
             friend = Friend.where(user_id: session[:current_user]["id"], friend_id: params[:id]).first
+            friend_to = Friend.where(friend_id: session[:current_user]["id"], user_id: params[:id]).first
             p friend
             friend.ban = 1
-            if friend.save
+            friend_to.ban = 1
+            if friend.save && friend_to.save
                 render :json => {
                     :status => 1
                 }
@@ -109,9 +111,11 @@ class FriendController < ApplicationController
     def unban
         if request.xhr?
             friend = Friend.where(user_id: session[:current_user]["id"], friend_id: params[:id]).first
+            friend_to = Friend.where(friend_id: session[:current_user]["id"], user_id: params[:id]).first
             p friend
-            friend.ban = nil
-            if friend.save
+            friend.ban = 0
+            friend_to.ban = 0
+            if friend.save && friend_to.save
                 render :json => {
                     :status => 1
                 }
