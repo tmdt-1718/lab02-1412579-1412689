@@ -54,6 +54,14 @@
               </div>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
+                    <tr>
+                        <th></th>
+                        <th >Người nhận</th>
+                        <th>Tên tin nhắn</th>
+                        <th>Người nhận đã đóc</th>
+                        <th>Thời gian gửi</th>
+                        <th>Thao tác</th>
+                      </tr>
                   <tbody>
                   <%@mail.each do |ml|%>
                   <tr>
@@ -62,22 +70,21 @@
                   <%elsif%>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
                     <%end%>
-                    <td class="mailbox-name"><a>Người nhận: <%= ml.fullname %></a></td>
+                    <td class="mailbox-name"><a><%= ml.fullname %></a></td>
                     <td class="mailbox-subject"><b><%= truncate(ml.title, length: 20) %></b></td>
                     <td class="mailbox-attachment">
                         <%if ml.isRead%>
-                        <b>Đã đọc:    <%= time_ago_in_words(ml.updated_at)%></b>
+                        <b>Đã đọc lúc:    <%= time_ago_in_words(ml.updated_at)%></b>
                         <%else%>
                         <b>Người nhận chưa đọc thư</b>
                         <%end%>
                     </td>
                     <td class="mailbox-date">
-                    Đã gửi:
 
                       <%= time_ago_in_words(ml.created_at)%>
 
                   </td>
-                  <td><%= link_to "ReadMail", controller: "mail", action: "read", id: ml %></td>
+                  <td><%= link_to "Đọc tin nhắn", controller: "mail", action: "readsent", id: ml %></td>
                   </tr>
                   <%end%>
                   </tbody>

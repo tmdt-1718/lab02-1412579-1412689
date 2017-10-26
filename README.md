@@ -19,12 +19,12 @@ Yêu cầu **bắt buộc**
 * [x] Đăng ký tài khoản bằng email, password, và tên.  (**1412579**)
 * [x] Đăng nhập bằng email và password. (**1412579**)
 * [x] Sau khi đăng nhập, người dùng sẽ được chuyển đến trang liệt kê danh sách các tin nhắn đã nhận, sắp xếp theo thứ tự thời gian, một nút để tạo tin nhắn mới, nút để xem danh sách bạn bè và nút để xem các tin nhắn đã gửi. (**1412579**)
-* [ ] Tin nhắn chưa đọc phải được làm nổi bật hơn các tin nhắn khác. (**MSSV**)
+* [x] Tin nhắn chưa đọc phải được làm nổi bật hơn các tin nhắn khác. (**1412689**)
 * [x] Nhấn vào nút "xem danh sách bạn" sẽ chuyển người dùng đến trang liệt kê danh sách người dùng cùng với các chức năng thêm bạn. (**1412579**)
 * [x] Nhấn nút "tạo tin nhắn" sẽ chuyển sang giao diện cho phép người dùng gửi tin nhắn cho người dùng trong danh sách bạn bè. Người gửi phải nằm trong danh sách bạn bè và cho phép người dùng chọn qua dropdown. (**1412579**)
-* [x] Nhấn "xem tin đã gửi" sẽ chuyển sang giao diện hiển thị danh sách tin nhắn đã gửi. Mỗi tin nhắn cần hiện thời gian người nhận đã đọc. (**MSSV**)
-* [ ] Mỗi người dùng chỉ có thể đọc tin nhắn 1 lần duy nhất. (**MSSV**)
-* [ ] Người dùng chỉ có thể đọc tin nhắn khi họ nằm trong danh sách người nhận. (**1412579**)
+* [x] Nhấn "xem tin đã gửi" sẽ chuyển sang giao diện hiển thị danh sách tin nhắn đã gửi. Mỗi tin nhắn cần hiện thời gian người nhận đã đọc. (**1412689**)
+* [x] Mỗi người dùng chỉ có thể đọc tin nhắn 1 lần duy nhất. (**1412579**)
+* [x] Người dùng chỉ có thể đọc tin nhắn khi họ nằm trong danh sách người nhận. (**1412579**)
 
 Yêu cầu **không bắt buộc**:
 * [ ] Người dùng có thể gửi hình ảnh đính kèm theo thông điệp. (**MSSV**)
@@ -39,8 +39,11 @@ Yêu cầu **không bắt buộc**:
 * [ ] Người dùng có thể gửi tin nhắn cho người dùng ngoài hệ thống. Khi đó, người nhận sẽ nhận được 1 email chứa link đăng ký tài khoản. Sau khi đăng ký tài khoản, họ có thể xem tin nhắn đã nhận. (**MSSV**)
 
 Liệt kê các **yêu cầu nâng cao** đã thực hiện:
-* [ ] Chức năng 1
-* [ ] Chức năng 2
+* [x] Người dùng có thể gửi tin nhắn đến nhiều người dùng cùng lúc. (**1412579**)
+* [x] Người dùng có thể block người khác. Sau khi block, người dùng sẽ không nhận được tin nhắn từ người bị block gửi nữa. (**1412579**)
+* [x] Người dùng có thể xóa người dùng khác ra khỏi danh sách bạn. (**1412579**)
+* [x] Người dùng có thể unblock người dùng khác. (**1412579**)
+* [x] Tất cả liên quan tới thêm/xoá/block bạn đều sử dụng ajax(**1412579**)
 
 ## Demo
 

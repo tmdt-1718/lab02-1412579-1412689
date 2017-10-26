@@ -3,7 +3,7 @@ class MailController < ApplicationController
     def new
         id = session[:current_user]["id"];
       
-        @added_fr = Friend.where("user_id = #{id}").where("ban is null")
+        @added_fr = Friend.where("user_id = #{id}").where("ban = 0")
 
         array = []
         @added_fr.each do |us|
@@ -37,14 +37,25 @@ class MailController < ApplicationController
     end
     def sent
 
-      @mail = Mail.joins("INNER JOIN users ON users.id = mails.user_receive").where(:user_send => session[:current_user]["id"]).select("mails.*","users.*")
+      @mail = Mail.joins("INNER JOIN users ON users.id = mails.user_receive").where(:user_send => session[:current_user]["id"]).select("mails.*","users.fullname")
     end
     def received
-      @mail = Mail.joins("INNER JOIN users ON users.id = mails.user_send").where(:user_receive => session[:current_user]["id"]).where(:isRead => nil).select("mails.*","users.*")
+      @mail = Mail.joins("INNER JOIN users ON users.id = mails.user_send").where(:user_receive => session[:current_user]["id"]).where(:isRead => nil).select("mails.*","users.fullname")
 
     end
-    def read
-      @mail = Mail.all
+    def readsent
+      @ml = Mail.find_by_id(params[:id])
+      @email = User.find_by_id(@ml.user_receive)
+    end
+    def readreceived
+        @ml = Mail.find_by_id(params[:id])
+        @email = User.find_by_id(@ml.user_receive)
+        if @ml.user_receive == session[:current_user]["id"]
+            @ml.isRead = 1
+            @ml.save
+        else
+            redirect_to :received
+        end
     end
     private
     def mail_params
