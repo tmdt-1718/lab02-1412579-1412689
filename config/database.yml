@@ -22,7 +22,7 @@ default: &default
   # username: <%= Figaro.env.username %>
   # password: <%= Figaro.env.password %>
   username: postgres
-  password: 1
+  password: 24081995
   host: localhost
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -87,7 +87,7 @@ test:
 #
 production:
   <<: *default
-  
+
   host: <%= Figaro.env.host %>
   database: <%= Figaro.env.database %>
   username: <%= Figaro.env.username %>

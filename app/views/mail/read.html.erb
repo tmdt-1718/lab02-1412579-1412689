@@ -31,27 +31,41 @@
               </div>
             </div>
             <!-- /.box-header -->
+            <%@mail.each do |ml|%>
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h3>{{ email.title }}</h3>
-                <h5>From: {{ email.fullname }}
-                  <span class="mailbox-read-time pull-right">{{ email.created_at }}</span></h5>
+                <p>
+                  <strong style="font-weight:bold">Tên tin nhắn: </strong>
+                  <%= ml.title%>
+                </p>
+                <p>
+                  <strong style="font-weight:bold">from: </strong>
+                  <%= ml.user_send%>
+                </p>
+                <span class="mailbox-read-time pull-right"><%= time_ago_in_words(ml.created_at)%></span></>
+                <p>
+                  <strong style="font-weight:bold">Nội dung:</strong>
+
+                </p>
+                <%= ml.content%>
+
+
+              </div>
+              <div class="mailbox-read-message">
+                  <textarea style="display:none;"><%= ml.content%></textarea>
               </div>
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border text-center">
-                
-                
+
+
               </div>
               <!-- /.mailbox-controls -->
-              <div class="mailbox-read-message">
-                <div id="read">
-                <textarea style="display:none;">{{ email.content }}</textarea>
+
             </div>
-              </div>
-            </div>
+            <%end%>
             <!-- /.box-body -->
             <div class="box-footer">
-              
+
             </div>
             <!-- /.box-footer -->
             <div class="box-footer">
@@ -73,7 +87,7 @@
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
     </div>
-    
+
   </footer>
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
@@ -97,6 +111,6 @@
                     syncScrolling : "single",
                     path    : "../lib/"
                 });
-                
+
             });
 </script>

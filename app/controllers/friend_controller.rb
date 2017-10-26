@@ -1,6 +1,7 @@
 class FriendController < ApplicationController
     before_action :isLogin
     def list
+      @user=User.all
         id = session[:current_user]["id"];
         @added_fr = Friend.where("user_id = #{id}").where("ban = 0")
         @array = []
@@ -9,6 +10,7 @@ class FriendController < ApplicationController
         end
 
         @banned = Friend.where("user_id = #{id}").where("ban = 1")
+
         array_banned = []
         @banned.each do |us|
             array_banned.push(us.friend_id)
@@ -21,7 +23,7 @@ class FriendController < ApplicationController
 
         if @user.empty?
         else
-            
+
         end
     end
     def banned
@@ -38,10 +40,9 @@ class FriendController < ApplicationController
 
         if @user.empty?
         else
-            
+
         end
     end
-    
     def added
         id = session[:current_user]["id"];
         added_fr = Friend.where("user_id = #{id}")
@@ -53,9 +54,9 @@ class FriendController < ApplicationController
         if @user.empty?
 
         else
-            
+
         end
-    end 
+    end
     def add
         if request.xhr?
             friend = Friend.new(user_id: session[:current_user]["id"], friend_id: params[:id])

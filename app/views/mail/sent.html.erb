@@ -5,7 +5,7 @@
     <section class="content-header">
       <h1>
         Sentbox
-        <small>{{count}} messages sent</small>
+        <small><%= @mail.length%> messages sent</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -34,10 +34,9 @@
       <% end %>
             <div class="box-header with-border">
               <h3 class="box-title">Sent box</h3>
-              
                 <div class="box-tools pull-right">
                 <div class="has-feedback">
-                  
+
                 </div>
               </div>
               <!-- /.box-tools -->
@@ -49,38 +48,38 @@
                 </div>
                 <!-- /.btn-group -->
                 <div class="pull-right">
-                  
+
                 </div>
                 <!-- /.pull-right -->
               </div>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-               
+                  <%@mail.each do |ml|%>
                   <tr>
-                  <td>{{inc @index}}</td>
-           
+                    <%if ml.isRead%>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-         
+                  <%elsif%>
                     <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-            
-                    <td class="mailbox-name"><a href="/readsent/{{id}}">Người nhận: {{ fullname }}</a></td>
-                    <td class="mailbox-subject"><b>{{ title }}</b></td>
+                    <%end%>
+                    <td class="mailbox-name"><a>Người nhận: <%= ml.fullname %></a></td>
+                    <td class="mailbox-subject"><b><%= truncate(ml.title, length: 20) %></b></td>
                     <td class="mailbox-attachment">
-           
-                        <b>Đã đọc: {{ read_time }}</b>
-                          
+                        <%if ml.isRead%>
+                        <b>Đã đọc:    <%= time_ago_in_words(ml.updated_at)%></b>
+                        <%else%>
                         <b>Người nhận chưa đọc thư</b>
-             
+                        <%end%>
                     </td>
                     <td class="mailbox-date">
-                    Đã gửi 
-                    <time datetime="{{ created_at }}" pubdate>
-                      {{ created_at }}
-                  </time>
+                    Đã gửi:
+
+                      <%= time_ago_in_words(ml.created_at)%>
+
                   </td>
+                  <td><%= link_to "ReadMail", controller: "mail", action: "read", id: ml %></td>
                   </tr>
-            
+                  <%end%>
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -94,7 +93,7 @@
                 </div>
                 <!-- /.btn-group -->
                 <div class="pull-right">
-                  
+
                 </div>
                 <!-- /.pull-right -->
               </div>
@@ -111,7 +110,7 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-    
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -122,4 +121,3 @@
 <!-- ./wrapper -->
 
 </div>
-
