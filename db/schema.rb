@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20171017162323) do
   create_table "friends", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "friend_id"
+    t.integer "ban", limit: 2, default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "ban", limit: 2
   end
 
   create_table "mails", force: :cascade do |t|

@@ -2,7 +2,7 @@ class FriendController < ApplicationController
     before_action :isLogin
     def list
         id = session[:current_user]["id"];
-        @added_fr = Friend.where("user_id = #{id}").where("ban is null")
+        @added_fr = Friend.where("user_id = #{id}").where("ban = 0")
         @array = []
         @added_fr.each do |us|
             @array.push(us.friend_id)
@@ -59,7 +59,8 @@ class FriendController < ApplicationController
     def add
         if request.xhr?
             friend = Friend.new(user_id: session[:current_user]["id"], friend_id: params[:id])
-            if friend.save
+            friend_to = Friend.new(friend_id: session[:current_user]["id"], user_id: params[:id])
+            if friend.save && friend_to.save
                 render :json => {
                     :status => 1
                 }
@@ -73,9 +74,11 @@ class FriendController < ApplicationController
     def destroy
         if request.xhr?
             friend = Friend.where(user_id: session[:current_user]["id"], friend_id: params[:id]).first
+            friend_del = Friend.where(friend_id: session[:current_user]["id"], user_id: params[:id]).first
             p friend
             des = Friend.destroy(friend.id)
-            if des.destroyed?
+            des_to = Friend.destroy(friend_del.id)
+            if des.destroyed? && des_to.destroyed?
                 render :json => {
                     :status => 1
                 }
