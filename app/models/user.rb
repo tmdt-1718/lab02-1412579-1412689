@@ -9,6 +9,6 @@ class User < ApplicationRecord
     validates_confirmation_of :password, presence: true
 
     has_many :friend
-    has_many :mail
+    has_many :mess
    
 end

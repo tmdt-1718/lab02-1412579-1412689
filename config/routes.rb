@@ -19,15 +19,15 @@ Rails.application.routes.draw do
   post '/unban/:id', to: 'friend#unban', as: :unban
 
 
-  get '/sent', to: 'mail#sent', as: :sent
-  get '/received', to: 'mail#received', as: :received
+  get '/sent', to: 'mess#sent', as: :sent
+  get '/received', to: 'mess#received', as: :received
 
 
 
-  get '/new', to: 'mail#new', as: :new
-  post '/new', to: 'mail#pnew', as: :pnew
+  get '/new', to: 'mess#new', as: :new
+  post '/new', to: 'mess#pnew', as: :pnew
 
-  get 'sent/read/:id', to: 'mail#readsent', as: :readsent
-  get 'received/read/:id', to: 'mail#readreceived', as: :readreceived
+  get 'sent/read/:id', to: 'mess#readsent', as: :readsent
+  get 'received/read/:id', to: 'mess#readreceived', as: :readreceived
 
 end

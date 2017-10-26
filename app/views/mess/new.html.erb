@@ -1,0 +1,89 @@
+<div class="container-fluid">
+
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Soạn email
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active">Mailbox</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <div class="row">
+        <div class="col-md-3">
+        <a href="/received" class="btn btn-primary btn-block margin-bottom">Trở về hộp thư đến</a>
+      <%=render "shared/sidebar" %>
+
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Tạo tin nhắn mới</h3>
+            </div>
+            <!-- /.box-header -->
+            <%= form_with scope: :mail, local: true do |f|%>
+            <div class="box-body">
+              <div class="form-group">
+                <label>Người nhận: </label>
+                <%= f.select("id][", @user.collect {|p| [ p.fullname + " - " + p.email, p.id ] }, { include_blank: false }, class: "form-control select2") %>
+                </div>
+                <div class="form-group">
+                <label>Tên tin nhắn: </label>
+                <%= f.text_field :title , placeholder:"Nhập tên tin nhắn" , class: "form-control", required: "required"%>
+              </div>
+              </div>
+              <div class="form-group" >
+              <div class="box-body">
+             </div>
+
+              <div id="compose">
+              <%= f.text_area :content , placeholder:"Nhập tin nhắn" , class: "textarea", style: "width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;", required: "required"%>
+              
+            </div>
+              </div>
+              <div class="form-group">
+                <div class="box-footer">
+                  <div class="pull-right">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gửi</button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+            
+            <%end%>
+            <!-- /.box-footer -->
+          </div>
+          
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+    
+    </div>
+
+  </footer>
+
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+</div>

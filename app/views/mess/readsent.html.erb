@@ -1,0 +1,95 @@
+<div class="container-fluid">
+<div class="wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Đọc email
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Mailbox</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <div class="row">
+        <div class="col-md-3">
+          <a href="/received" class="btn btn-primary btn-block margin-bottom">Trở về hộp thư đến</a>
+          <%=render "shared/sidebar" %>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Đọc Email</h3>
+
+              <div class="box-tools pull-right">
+                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
+                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="mailbox-read-info">
+                <p>
+                  <strong style="font-weight:bold">Tên tin nhắn: </strong>
+                  <%= @ml.title %>
+                </p>
+                <p>
+                  <strong style="font-weight:bold">Người nhận: </strong>
+                  <%= @email.email%>
+                </p>
+                <span class="mailbox-read-time pull-right"><%= time_ago_in_words(@ml.created_at)%></span></>
+                <p>
+                  <strong style="font-weight:bold">Nội dung:</strong>
+
+                </p>
+                <p><%= @ml.content.html_safe %></p>
+                
+
+
+              </div>
+              <!-- /.mailbox-read-info -->
+              <div class="mailbox-controls with-border text-center">
+
+
+              </div>
+              <!-- /.mailbox-controls -->
+
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+            </div>
+            <!-- /.box-footer -->
+            <div class="box-footer">
+              <div class="pull-right">
+              </div>
+              <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+    </div>
+
+  </footer>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+</div>
+
