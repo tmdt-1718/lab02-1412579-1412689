@@ -47,11 +47,9 @@ Liệt kê các **yêu cầu nâng cao** đã thực hiện:
 
 ## Demo
 
-Link ảnh GIF demo ứng dụng:
+Link demo ứng dụng:
 
-![Video Walkthrough](demo.gif)
-
-Tạo ảnh GIF với chương trình [LiceCap](http://www.cockos.com/licecap/).
+[![Demo Lab01 - 1412579 - 1412689](https://img.youtube.com/vi/vm_Xzd8MrWA/0.jpg)](https://www.youtube.com/watch?v=vm_Xzd8MrWA)
 
 
 ## License
